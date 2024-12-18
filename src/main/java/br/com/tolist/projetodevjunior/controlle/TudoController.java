@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tolist.projetodevjunior.entity.Todo;
@@ -32,11 +31,11 @@ public class TudoController {
     List<Todo>list(){
         return todoService.list();   
     }
-    @PutMapping
-    List<Todo>update(@RequestBody Todo todo){
-        return todoService.update(todo);   
+   @PutMapping("/{id}")
+    List<Todo>update(@RequestBody Todo todo,@PathVariable("id") Long id){
+        return todoService.update(id, todo);   
     }
-    @DeleteMapping("id")
+    @DeleteMapping("{id}")
     List<Todo>delete(@PathVariable("id") Long id){
         return todoService.delete(id); 
     }
