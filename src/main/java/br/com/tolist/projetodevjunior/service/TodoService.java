@@ -12,10 +12,10 @@ import br.com.tolist.projetodevjunior.repository.TodoRepository;
 public class TodoService {
 
     private TodoRepository todoRepository;
-   
-
+  
     public TodoService(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
+       
     }
     public List<Todo> create(Todo todo){
         todoRepository.save(todo);
@@ -23,8 +23,8 @@ public class TodoService {
 
     }
     public List<Todo> list(){
-        Sort sort = Sort.by("prioridade").ascending().and(
-            Sort.by("nome").descending());
+        Sort sort = Sort.by("prioridade").descending().and(
+            Sort.by("nome").ascending());
         return  todoRepository.findAll(sort);
         
     }
